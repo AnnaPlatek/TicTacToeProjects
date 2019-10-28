@@ -1,23 +1,30 @@
-# functions
+# methods
 def StartGame():
     playing = input('Do you want to play tic tac toe game? (y/n) ')
     if (playing == 'y'):
         print('Start game!')
         ChooseMarker()
+        Game()
     elif (playing == 'n'):
         print('See you next time ;)')
     else:
         print('Please choose y or n')
         StartGame()
 
+def Game():
+    starting_board = ["#", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+    DisplayBoard(starting_board)
+    position=int(input("Please choose position in board"))
+    PlaceMarker(starting_board,marker,position)
+
 def ChooseMarker():
-    player1_marker = input('Choose you marker (X or O): ')
-    if (player1_marker == 'X'):
-        player2_marker = 'O'
-    elif (player1_marker == 'O'):
-        player2_marker = 'X'
+    player_marker = input('Choose you marker (X or O): ').upper()
+    if (player_marker == 'X'):
+        return ('X', 'O')
+    elif (player_marker == 'O'):
+        return ('O', 'X')
     else:
-        print('Please choose X or O')
+        #print('Please choose X or O')
         ChooseMarker()
     # todo: print board
 
@@ -31,6 +38,9 @@ def DisplayBoard(board):
     print(" "+board[1]+" | "+board[2]+" | " + board[3])
     print("   |   |   ")
 
+def PlaceMarker(board,marker,position):
+    board[position]=marker
+#Start
+
 StartGame()
-test_board=["#","X","O","X","O","X","O","X","X","X"]
-DisplayBoard(test_board)
+
